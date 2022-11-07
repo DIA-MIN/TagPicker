@@ -1,26 +1,26 @@
 import styled, {css} from 'styled-components';
 
 const StyledButton = styled.button`
-  padding: 6px 12px;
-  border: 1px solid lightgray;
-  border-radius: 8px;
+  all: unset;
+  cursor: pointer;
+  padding: 0 12px;
+  height: 34px;
+  border: 3px solid var(--sub-bg-color);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   font-size: 1rem;
-  line-height: 1.5;
+  background-color: var(--sub-bg-color);
+  color: var(--main-text-color);
 
-  color: ${(p) => p.color || 'gray'};
-  background: ${(p) => p.background || 'white'};
-
-  ${(p) =>
-    p.primary &&
-    css`
-      color: white;
-      background: navy;
-      border-color: navy;
-    `}
+  &:hover {
+    transition: 0.4s ease;
+    background-color: white;
+    color: var(--main-bg-color);
+  }
 `;
 
-const Button = ({children, ...props}) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+const Button = ({children}) => {
+  return <StyledButton>{children}</StyledButton>;
 };
 
 export default Button;

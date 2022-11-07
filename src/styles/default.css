@@ -1,3 +1,10 @@
+:root {
+  --main-bg-color: #ffafbd;
+  --sub-bg-color: #ffc3a0;
+  --gray-light: #eeeeee;
+  --main-text-color: #212121;
+}
+
 @font-face {
   font-family: 'ONE-Mobile-POP';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff')
@@ -10,7 +17,9 @@ body {
 }
 
 html,
-body {
+body,
+#root {
+  height: 100%;
   margin: 0;
   padding: 0;
 }

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const AppHeader = styled.header`
+  text-align: center;
   width: 300px;
   font-size: 45px;
-  padding: 3rem 0;
+  padding-top: 3rem;
   background: linear-gradient(to right, #ffafbd, #ffc3a0);
   background-clip: text;
   -webkit-background-clip: text;
@@ -11,7 +12,7 @@ const AppHeader = styled.header`
 `;
 
 const Header = () => {
-  return <AppHeader>TAGPICKER</AppHeader>;
+  return <AppHeader>#TAGPICKER</AppHeader>;
 };
 
 export default Header;
