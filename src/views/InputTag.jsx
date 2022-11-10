@@ -1,15 +1,21 @@
 import {useState} from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import {AiOutlinePlusSquare} from 'react-icons/ai';
 
 const InputContainer = styled.form`
   padding-bottom: 3rem;
+  display: flex;
+  align-items: center;
+
+  .add {
+    font-size: 20px;
+  }
 `;
 
 const StyledInput = styled.input`
   all: unset;
   color: var(--main-text-color);
-  /* border-radius: 5px; */
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background: linear-gradient(
@@ -47,7 +53,9 @@ const InputTag = ({tags, setTags}) => {
         placeholder="# 해시태그를 입력해주세요."
         onChange={changeHandler}
       />
-      <Button type="submit">추가</Button>
+      <Button type="submit">
+        <AiOutlinePlusSquare className="add" />
+      </Button>
     </InputContainer>
   );
 };

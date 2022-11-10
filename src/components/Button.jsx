@@ -11,6 +11,9 @@ const StyledButton = styled.button`
   font-size: 1rem;
   background-color: var(--sub-bg-color);
   color: var(--main-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     transition: 0.4s ease;
