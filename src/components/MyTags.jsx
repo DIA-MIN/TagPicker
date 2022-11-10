@@ -1,26 +1,27 @@
 import styled from 'styled-components';
 import HighLight from './HighLight';
 import Title from './Title';
+import {AiOutlineCloseSquare} from 'react-icons/ai';
 
 const MyTagsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  width: 80%;
-  padding: 0 1rem;
+  align-items: flex-start;
+  width: 85%;
 `;
 
 const MyTagsHeader = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const TagList = styled.ul`
+  align-self: center;
   border: 3px solid var(--sub-bg-color);
   border-radius: 5px;
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
   padding: 1rem;
@@ -28,13 +29,32 @@ const TagList = styled.ul`
 
 const Tag = styled.li`
   color: var(--main-text-color);
+  font-size: 16px;
   background-color: var(--gray-light);
   padding: 4px 8px;
   margin: 0 4px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+
+  .close {
+    font-size: 18px;
+    margin-left: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--close-color);
+      transition: 0.3s ease;
+    }
+  }
 `;
 
-const MyTags = ({tags}) => {
+const MyTags = ({tags, setIsUpdate, setLocalTags}) => {
+  const deleteTag = (id) => {
+    setLocalTags((pre) => pre.filter((tag) => tag != id));
+    setIsUpdate(true);
+  };
+
   return (
     <>
       {tags.length ? (
@@ -45,7 +65,16 @@ const MyTags = ({tags}) => {
             </Title>
           </MyTagsHeader>
           <TagList>
-            {tags && tags.map((tag) => <Tag key={tag}>#{tag}</Tag>)}
+            {tags &&
+              tags.map((tag) => (
+                <Tag key={tag}>
+                  #{tag}
+                  <AiOutlineCloseSquare
+                    className="close"
+                    onClick={() => deleteTag(tag)}
+                  />
+                </Tag>
+              ))}
           </TagList>
         </MyTagsContainer>
       ) : (

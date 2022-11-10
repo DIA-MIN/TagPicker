@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Header from './views/Header';
 import InputTag from './views/InputTag';
@@ -18,13 +18,28 @@ function App() {
     if (data !== null) return JSON.parse(data);
     else return [];
   });
-  const [tags, setTags] = useState([]);
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  useEffect(() => {
+    if (isUpdate) {
+      localStorage.setItem('myTags', JSON.stringify([...localTags]));
+      setIsUpdate(false);
+    }
+  }, [isUpdate]);
 
   return (
     <AppConatainer>
       <Header />
-      <Tags tags={tags} />
-      <InputTag tags={tags} setTags={setTags} />
+      <Tags
+        tags={localTags}
+        setIsUpdate={setIsUpdate}
+        setLocalTags={setLocalTags}
+      />
+      <InputTag
+        localTags={localTags}
+        setLocalTags={setLocalTags}
+        setIsUpdate={setIsUpdate}
+      />
     </AppConatainer>
   );
 }

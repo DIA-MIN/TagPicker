@@ -9,10 +9,14 @@ const TagContainer = styled.div`
   width: 100%;
 `;
 
-const Tags = ({tags}) => {
+const Tags = ({tags, setIsUpdate, setLocalTags}) => {
   return (
     <TagContainer>
-      <MyTags tags={tags} />
+      <MyTags
+        tags={tags}
+        setIsUpdate={setIsUpdate}
+        setLocalTags={setLocalTags}
+      />
     </TagContainer>
   );
 };

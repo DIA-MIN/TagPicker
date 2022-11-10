@@ -28,21 +28,23 @@ const StyledInput = styled.input`
   padding: 0 1rem;
 `;
 
-const InputTag = ({tags, setTags}) => {
+const InputTag = ({localTags, setLocalTags, setIsUpdate}) => {
   const [tag, setTag] = useState('');
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!tags.includes(tag)) {
-      setTags((prev) => [...prev, tag]);
+    if (!localTags.includes(tag)) {
+      setLocalTags((pre) => [...pre, tag]);
+      setIsUpdate(true);
     } else {
-      alert('이미 등록된 해시태그입니다.');
+      alert('이미 등록된 해시 태그입니다.');
     }
     setTag('');
   };
 
   const changeHandler = (e) => {
-    setTag(e.target.value);
+    const value = e.target.value;
+    setTag(value.replaceAll(' ', ''));
   };
 
   return (
