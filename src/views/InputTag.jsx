@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import {AiOutlinePlusSquare} from 'react-icons/ai';
 
 const InputContainer = styled.form`
-  padding-bottom: 3rem;
+  padding: 3rem 0;
   display: flex;
   align-items: center;
 

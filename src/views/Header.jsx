@@ -5,6 +5,7 @@ const AppHeader = styled.header`
   width: 300px;
   font-size: 45px;
   padding-top: 3rem;
+  padding-bottom: 5rem;
   background: linear-gradient(to right, #ffafbd, #ffc3a0);
   background-clip: text;
   -webkit-background-clip: text;
