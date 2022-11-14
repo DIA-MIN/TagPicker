@@ -81,7 +81,7 @@ const TagsPick = ({koTags, enTags, option}) => {
     const koPicks = [];
     const enPicks = [];
 
-    if (koPicks.length === 0 || enTags.length === 0) {
+    if (koTags.length === 0 || enTags.length === 0) {
       setIsEmty((pre) => !pre);
       return;
     }

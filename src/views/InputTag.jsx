@@ -93,6 +93,7 @@ const InputTag = ({
       const tags = tag.replace(/["[\]]/g, '').split(',');
       setLocalTags(tags);
       setIsUpdate(true);
+      setIsPush(false);
     } else {
       if (tag === '') {
         setMessage('해시태그를 입력해주세요.');
