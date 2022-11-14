@@ -35,7 +35,8 @@ const TagsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
 `;
 
 const TagList = styled.ul`
@@ -94,7 +95,7 @@ const TagsPick = ({koTags, enTags}) => {
       <TagPickBtn onClick={pickTagsHandler}>TAGPICK</TagPickBtn>
       {history.length ? (
         <TagsContainer>
-          {/* <Title size={24}>최근 사용한 해시태그</Title> */}
+          <Title size={20}>최근 사용한 해시태그는 다음과 같습니다.</Title>
           <TagList>
             {history && history.map((tag) => <Tag key={tag}>{tag}</Tag>)}
           </TagList>

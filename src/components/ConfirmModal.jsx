@@ -24,7 +24,7 @@ const Modal = styled.div`
   width: 300px;
   background-color: white;
   border-radius: 10px;
-  padding: 1rem 0;
+  padding: 1rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   animation: fade-in 0.4s ease;
 
@@ -42,6 +42,7 @@ const Modal = styled.div`
 const BtnContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
 
   .btn {
     cursor: pointer;
@@ -63,7 +64,55 @@ const BtnContainer = styled.div`
   }
 `;
 
-const ConfirmModal = ({children, setIsClicked, deleteTag, delTag}) => {
+const ModalForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  animation: fade-in 0.4s ease;
+
+  @keyframes fade-in {
+    0% {
+      transform: translateY(-200%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const InputLabel = styled.label`
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+`;
+
+const StyledInput = styled.input`
+  all: unset;
+  color: var(--main-text-color);
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    var(--main-bg-color),
+    var(--sub-bg-color)
+  );
+  margin-bottom: 8px;
+  width: 100px;
+  height: 40px;
+  padding: 0 1rem;
+`;
+
+const ConfirmModal = ({children, setIsClicked, deleteTag, delTag, type}) => {
   const clickCloseHandler = () => {
     setIsClicked(false);
   };
@@ -75,19 +124,55 @@ const ConfirmModal = ({children, setIsClicked, deleteTag, delTag}) => {
 
   return (
     <ModalContainer>
-      <Modal>
-        <Title>{children}</Title>
-        <BtnContainer>
-          <AiFillCheckCircle
-            className="btn check"
-            onClick={clickCheckHandler}
-          />
-          <AiFillCloseCircle
-            className="btn close"
-            onClick={clickCloseHandler}
-          />
-        </BtnContainer>
-      </Modal>
+      {type === 'confirm' && (
+        <Modal>
+          <Title>{children}</Title>
+          <BtnContainer>
+            <AiFillCheckCircle
+              className="btn check"
+              onClick={clickCheckHandler}
+            />
+            <AiFillCloseCircle
+              className="btn close"
+              onClick={clickCloseHandler}
+            />
+          </BtnContainer>
+        </Modal>
+      )}
+      {type === 'check' && (
+        <Modal>
+          <Title>{children}</Title>
+          <BtnContainer>
+            <AiFillCheckCircle
+              className="btn check"
+              onClick={clickCloseHandler}
+            />
+          </BtnContainer>
+        </Modal>
+      )}
+      {type === 'option' && (
+        <ModalForm>
+          <Title>{children}</Title>
+          <InputContainer>
+            <InputLabel>KO</InputLabel>
+            <StyledInput placeholder="KO 개수" />
+          </InputContainer>
+          <InputContainer>
+            <InputLabel>EN</InputLabel>
+            <StyledInput placeholder="EN 개수" />
+          </InputContainer>
+          <BtnContainer>
+            <AiFillCheckCircle
+              className="btn check"
+              onClick={clickCheckHandler}
+            />
+            <AiFillCloseCircle
+              className="btn close"
+              onClick={clickCloseHandler}
+            />
+          </BtnContainer>
+        </ModalForm>
+      )}
     </ModalContainer>
   );
 };

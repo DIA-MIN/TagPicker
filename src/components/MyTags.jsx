@@ -26,7 +26,8 @@ const MyTagsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
 `;
 
 const MyTagsHeader = styled.div`
@@ -223,6 +224,7 @@ const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate}) => {
           setIsClicked={setIsClicked}
           deleteTag={deleteTag}
           delTag={delTag}
+          type={'confirm'}
         >
           해시태그를 삭제할까요?
         </ConfirmModal>
