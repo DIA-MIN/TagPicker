@@ -1,12 +1,18 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Title from './Title';
 
 const Container = styled.div`
+  padding: 0 3rem;
   padding-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+    padding-top: 3rem;
+    align-items: center;
+  }
 `;
 
 const TagPickBtn = styled.button`
@@ -62,7 +68,7 @@ const Tag = styled.li`
   align-items: center;
 `;
 
-const TagsPick = ({koTags, enTags}) => {
+const TagsPick = ({koTags, enTags, option}) => {
   const [history, setHistory] = useState(() => {
     const data = localStorage.getItem('myTagsHistory');
     if (data !== null) return JSON.parse(data);
@@ -73,12 +79,12 @@ const TagsPick = ({koTags, enTags}) => {
     const koPicks = [];
     const enPicks = [];
 
-    while (koPicks.length < 5) {
+    while (koPicks.length < option.ko) {
       let koPick = koTags[Math.floor(Math.random() * koTags.length)];
       if (!koPicks.includes(koPick)) koPicks.push(koPick);
     }
 
-    while (enPicks.length < 15) {
+    while (enPicks.length < option.en) {
       let enPick = enTags[Math.floor(Math.random() * enTags.length)];
       if (!enPicks.includes(enPick)) enPicks.push(enPick);
     }

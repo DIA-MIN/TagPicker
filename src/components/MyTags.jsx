@@ -12,17 +12,25 @@ import ConfirmModal from './ConfirmModal';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  padding: 0 3rem;
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+    align-items: center;
+  }
 `;
 
 const MyTagsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3rem;
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const MyTagsContainer = styled.div`
-  align-self: flex-start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -117,7 +125,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate}) => {
+const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate, option}) => {
   const [isClampKo, setIsClampKo] = useState(false);
   const [isClampEn, setIsClampEn] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -225,6 +233,7 @@ const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate}) => {
           deleteTag={deleteTag}
           delTag={delTag}
           type={'confirm'}
+          option={option}
         >
           해시태그를 삭제할까요?
         </ConfirmModal>

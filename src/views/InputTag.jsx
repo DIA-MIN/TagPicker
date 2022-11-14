@@ -8,9 +8,11 @@ import ConfirmModal from '../components/ConfirmModal';
 const InputContainer = styled.form`
   /* position: sticky;
   bottom: 0; */
-  padding: 3rem 0;
+  padding: 3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 90%;
 
   .add {
     font-size: 20px;
@@ -46,6 +48,9 @@ const InputContainer = styled.form`
       color: white;
     }
   }
+  @media screen and (max-width: 768px) {
+    padding: 3rem 2rem;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -58,12 +63,23 @@ const StyledInput = styled.input`
     var(--main-bg-color),
     var(--sub-bg-color)
   );
-  width: 500px;
+  width: 100%;
+  max-width: 700px;
   height: 40px;
   padding: 0 1rem;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
-const InputTag = ({localTags, setLocalTags, setIsUpdate}) => {
+const InputTag = ({
+  localTags,
+  setLocalTags,
+  setIsUpdate,
+  option,
+  setOption,
+}) => {
   const [tag, setTag] = useState('');
   const [message, setMessage] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -139,12 +155,21 @@ const InputTag = ({localTags, setLocalTags, setIsUpdate}) => {
         />
       </InputContainer>
       {isClicked && (
-        <ConfirmModal setIsClicked={setIsClicked} type={'check'}>
+        <ConfirmModal
+          setIsClicked={setIsClicked}
+          type={'check'}
+          option={option}
+        >
           {message}
         </ConfirmModal>
       )}
       {isClickedOption && (
-        <ConfirmModal setIsClicked={setIsClickedOption} type={'option'}>
+        <ConfirmModal
+          setIsClicked={setIsClickedOption}
+          type={'option'}
+          option={option}
+          setOption={setOption}
+        >
           TAGPICK OPTION
         </ConfirmModal>
       )}

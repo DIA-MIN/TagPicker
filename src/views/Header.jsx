@@ -10,6 +10,10 @@ const AppHeader = styled.header`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+
+  @media screen and (max-width: 500px) {
+    font-size: 40px;
+  }
 `;
 
 const Header = () => {

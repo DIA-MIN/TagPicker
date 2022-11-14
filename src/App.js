@@ -19,6 +19,11 @@ function App() {
     else return [];
   });
   const [isUpdate, setIsUpdate] = useState(false);
+  const [option, setOption] = useState(() => {
+    const data = localStorage.getItem('myTagsOption');
+    if (data !== null) return JSON.parse(data);
+    else return {ko: 5, en: 15};
+  });
 
   useEffect(() => {
     if (isUpdate) {
@@ -34,11 +39,14 @@ function App() {
         tags={localTags}
         setIsUpdate={setIsUpdate}
         setLocalTags={setLocalTags}
+        option={option}
       />
       <InputTag
         localTags={localTags}
         setLocalTags={setLocalTags}
         setIsUpdate={setIsUpdate}
+        option={option}
+        setOption={setOption}
       />
     </AppConatainer>
   );

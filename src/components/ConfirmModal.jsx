@@ -1,6 +1,7 @@
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import Title from './Title';
 import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai';
+import {useState, useEffect} from 'react';
 
 const ModalContainer = styled.div`
   width: 100%;
@@ -112,13 +113,47 @@ const StyledInput = styled.input`
   padding: 0 1rem;
 `;
 
-const ConfirmModal = ({children, setIsClicked, deleteTag, delTag, type}) => {
+const ConfirmModal = ({
+  children,
+  setIsClicked,
+  deleteTag,
+  delTag,
+  type,
+  option,
+  setOption,
+}) => {
+  const [koValue, setKovalue] = useState(option.ko);
+  const [enValue, setEnvalue] = useState(option.en);
+
+  useEffect(() => {
+    console.log(option);
+  }, []);
+
   const clickCloseHandler = () => {
     setIsClicked(false);
   };
 
   const clickCheckHandler = () => {
     deleteTag(delTag);
+    setIsClicked(false);
+  };
+
+  const koChangeHandler = (e) => {
+    setKovalue(e.target.value);
+  };
+
+  const enChangeHandler = (e) => {
+    setEnvalue(e.target.value);
+  };
+
+  const optionSubmit = (e) => {
+    e.preventDefault();
+    const values = {
+      ko: koValue,
+      en: enValue,
+    };
+    setOption(values);
+    localStorage.setItem('myTagsOption', JSON.stringify(values));
     setIsClicked(false);
   };
 
@@ -151,21 +186,26 @@ const ConfirmModal = ({children, setIsClicked, deleteTag, delTag, type}) => {
         </Modal>
       )}
       {type === 'option' && (
-        <ModalForm>
+        <ModalForm onSubmit={optionSubmit}>
           <Title>{children}</Title>
           <InputContainer>
             <InputLabel>KO</InputLabel>
-            <StyledInput placeholder="KO 개수" />
+            <StyledInput
+              placeholder="KO 개수"
+              value={koValue}
+              onChange={koChangeHandler}
+            />
           </InputContainer>
           <InputContainer>
             <InputLabel>EN</InputLabel>
-            <StyledInput placeholder="EN 개수" />
+            <StyledInput
+              placeholder="EN 개수"
+              value={enValue}
+              onChange={enChangeHandler}
+            />
           </InputContainer>
           <BtnContainer>
-            <AiFillCheckCircle
-              className="btn check"
-              onClick={clickCheckHandler}
-            />
+            <AiFillCheckCircle className="btn check" onClick={optionSubmit} />
             <AiFillCloseCircle
               className="btn close"
               onClick={clickCloseHandler}

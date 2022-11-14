@@ -11,7 +11,7 @@ const TagContainer = styled.div`
   width: 100%;
 `;
 
-const Tags = ({tags, setIsUpdate, setLocalTags}) => {
+const Tags = ({tags, setIsUpdate, setLocalTags, option}) => {
   const [koTags, setKoTags] = useState([]);
   const [enTags, setEnTags] = useState([]);
 
@@ -36,8 +36,9 @@ const Tags = ({tags, setIsUpdate, setLocalTags}) => {
         enTags={enTags}
         setIsUpdate={setIsUpdate}
         setLocalTags={setLocalTags}
+        option={option}
       />
-      <TagsPick koTags={koTags} enTags={enTags} />
+      <TagsPick koTags={koTags} enTags={enTags} option={option} />
     </TagContainer>
   );
 };
