@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Title from './Title';
 import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai';
 
@@ -11,7 +11,7 @@ const ModalContainer = styled.div`
   bottom: 0;
   right: 0;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,19 @@ const Modal = styled.div`
   width: 300px;
   background-color: white;
   border-radius: 10px;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  animation: fade-in 0.4s ease;
+
+  @keyframes fade-in {
+    0% {
+      transform: translateY(-200%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
 `;
 
 const BtnContainer = styled.div`

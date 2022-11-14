@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   border: 3px solid var(--sub-bg-color);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-size: 1rem;
+  font-size: ${(p) => (p.size ? `${p.size}px` : `${1}rem`)};
   background-color: var(--sub-bg-color);
   color: var(--main-text-color);
   display: flex;
@@ -18,12 +18,12 @@ const StyledButton = styled.button`
   &:hover {
     transition: 0.4s ease;
     background-color: white;
-    color: var(--main-bg-color);
+    color: var(--sub-bg-color);
   }
 `;
 
-const Button = ({children}) => {
-  return <StyledButton>{children}</StyledButton>;
+const Button = ({children, size}) => {
+  return <StyledButton size={size}>{children}</StyledButton>;
 };
 
 export default Button;

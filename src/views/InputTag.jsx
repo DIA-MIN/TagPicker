@@ -4,6 +4,8 @@ import Button from '../components/Button';
 import {AiOutlinePlusSquare} from 'react-icons/ai';
 
 const InputContainer = styled.form`
+  /* position: sticky;
+  bottom: 0; */
   padding: 3rem 0;
   display: flex;
   align-items: center;
@@ -33,11 +35,15 @@ const InputTag = ({localTags, setLocalTags, setIsUpdate}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!localTags.includes(tag)) {
-      setLocalTags((pre) => [...pre, tag]);
-      setIsUpdate(true);
+    if (tag !== '') {
+      if (!localTags.includes(tag)) {
+        setLocalTags((pre) => [...pre, tag]);
+        setIsUpdate(true);
+      } else {
+        alert('이미 등록된 해시 태그입니다.');
+      }
     } else {
-      alert('이미 등록된 해시 태그입니다.');
+      alert('해시태그를 입력해주세요.');
     }
     setTag('');
   };

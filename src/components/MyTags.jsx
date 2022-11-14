@@ -9,19 +9,24 @@ import {
 import {useEffect, useState} from 'react';
 import ConfirmModal from './ConfirmModal';
 
-const MyTagsWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+`;
+
+const MyTagsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
 `;
 
 const MyTagsContainer = styled.div`
-  align-self: center;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 85%;
-  min-width: 700px;
+  width: 700px;
 `;
 
 const MyTagsHeader = styled.div`
@@ -50,7 +55,7 @@ const TagList = styled.ul`
     p.clamp &&
     css`
       height: 100%;
-      transition: 0.5s ease-out;
+      transition: 0.5s ease;
     `}
 
   ${(p) =>
@@ -58,7 +63,7 @@ const TagList = styled.ul`
     p.clamp &&
     css`
       height: 100%;
-      transition: 0.5s ease-out;
+      transition: 0.5s ease;
     `}
 `;
 
@@ -111,26 +116,11 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const MyTags = ({tags, setLocalTags, setIsUpdate}) => {
-  const [koTags, setKoTags] = useState([]);
-  const [enTags, setEnTags] = useState([]);
+const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate}) => {
   const [isClampKo, setIsClampKo] = useState(false);
   const [isClampEn, setIsClampEn] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [delTag, setDelTag] = useState('');
-
-  useEffect(() => {
-    const enfilter = /[a-zA-Z]/;
-    const koTag = [];
-    const enTag = [];
-    if (tags.length) {
-      for (let tag of tags) {
-        enfilter.test(tag) ? enTag.push(tag) : koTag.push(tag);
-      }
-    }
-    setKoTags(koTag);
-    setEnTags(enTag);
-  }, [tags.length]);
 
   const deleteTag = (id) => {
     setLocalTags((pre) => pre.filter((tag) => tag != id));
@@ -150,81 +140,81 @@ const MyTags = ({tags, setLocalTags, setIsUpdate}) => {
   return (
     <>
       {tags.length ? (
-        <MyTagsWrapper>
+        <Container>
           <Title>
             등록한 해시태그 (<HighLight>{tags.length}</HighLight>)
           </Title>
-          {koTags.length > 0 && (
-            <MyTagsContainer>
-              <MyTagsHeader>
-                <Title>
-                  KO (<HighLight>{koTags.length}</HighLight>)
-                </Title>
-              </MyTagsHeader>
-              <TagList ko clamp={isClampKo}>
-                {koTags &&
-                  koTags.map((tag) => (
-                    <Tag key={tag}>
-                      #{tag}
-                      <AiOutlineCloseSquare
-                        className="close"
-                        /* onClick={() => deleteTag(tag)} */
-                        onClick={() => modalHandler(tag)}
-                      />
-                    </Tag>
-                  ))}
-              </TagList>
-              <ButtonContainer>
-                {isClampKo ? (
-                  <AiOutlineUpCircle
-                    className="clamp"
-                    onClick={() => clampHandler('ko')}
-                  />
-                ) : (
-                  <AiOutlineDownCircle
-                    className="clamp"
-                    onClick={() => clampHandler('ko')}
-                  />
-                )}
-              </ButtonContainer>
-            </MyTagsContainer>
-          )}
-          {enTags.length > 0 && (
-            <MyTagsContainer>
-              <MyTagsHeader>
-                <Title>
-                  EN (<HighLight>{enTags.length}</HighLight>)
-                </Title>
-              </MyTagsHeader>
-              <TagList en clamp={isClampEn}>
-                {enTags &&
-                  enTags.map((tag) => (
-                    <Tag key={tag}>
-                      #{tag}
-                      <AiOutlineCloseSquare
-                        className="close"
-                        /* onClick={() => deleteTag(tag)} */
-                        onClick={() => modalHandler(tag)}
-                      />
-                    </Tag>
-                  ))}
-              </TagList>
-              <ButtonContainer>
-                {isClampEn ? (
-                  <AiOutlineUpCircle
-                    className="clamp"
-                    onClick={() => clampHandler('en')}
-                  />
-                ) : (
-                  <AiOutlineDownCircle
-                    className="clamp"
-                    onClick={() => clampHandler('en')}
-                  />
-                )}
-              </ButtonContainer>
-            </MyTagsContainer>
-          )}
-        </MyTagsWrapper>
+          <MyTagsWrapper>
+            {koTags.length > 0 && (
+              <MyTagsContainer>
+                <MyTagsHeader>
+                  <Title>
+                    KO (<HighLight>{koTags.length}</HighLight>)
+                  </Title>
+                </MyTagsHeader>
+                <TagList ko clamp={isClampKo}>
+                  {koTags &&
+                    koTags.map((tag) => (
+                      <Tag key={tag}>
+                        #{tag}
+                        <AiOutlineCloseSquare
+                          className="close"
+                          onClick={() => modalHandler(tag)}
+                        />
+                      </Tag>
+                    ))}
+                </TagList>
+                <ButtonContainer>
+                  {isClampKo ? (
+                    <AiOutlineUpCircle
+                      className="clamp"
+                      onClick={() => clampHandler('ko')}
+                    />
+                  ) : (
+                    <AiOutlineDownCircle
+                      className="clamp"
+                      onClick={() => clampHandler('ko')}
+                    />
+                  )}
+                </ButtonContainer>
+              </MyTagsContainer>
+            )}
+            {enTags.length > 0 && (
+              <MyTagsContainer>
+                <MyTagsHeader>
+                  <Title>
+                    EN (<HighLight>{enTags.length}</HighLight>)
+                  </Title>
+                </MyTagsHeader>
+                <TagList en clamp={isClampEn}>
+                  {enTags &&
+                    enTags.map((tag) => (
+                      <Tag key={tag}>
+                        #{tag}
+                        <AiOutlineCloseSquare
+                          className="close"
+                          onClick={() => modalHandler(tag)}
+                        />
+                      </Tag>
+                    ))}
+                </TagList>
+                <ButtonContainer>
+                  {isClampEn ? (
+                    <AiOutlineUpCircle
+                      className="clamp"
+                      onClick={() => clampHandler('en')}
+                    />
+                  ) : (
+                    <AiOutlineDownCircle
+                      className="clamp"
+                      onClick={() => clampHandler('en')}
+                    />
+                  )}
+                </ButtonContainer>
+              </MyTagsContainer>
+            )}
+          </MyTagsWrapper>
+        </Container>
       ) : (
         <p>등록된 해시 태그가 없습니다.</p>
       )}
