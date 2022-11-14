@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TAGPICKER/static/css/main.d7c35a99.css",
+    "main.js": "/TAGPICKER/static/js/main.7c736178.js",
+    "index.html": "/TAGPICKER/index.html",
+    "main.d7c35a99.css.map": "/TAGPICKER/static/css/main.d7c35a99.css.map",
+    "main.7c736178.js.map": "/TAGPICKER/static/js/main.7c736178.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d7c35a99.css",
+    "static/js/main.7c736178.js"
+  ]
+}
