@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/TagPicker/static/css/main.d7c35a99.css",
-    "main.js": "/TagPicker/static/js/main.ffac1233.js",
+    "main.js": "/TagPicker/static/js/main.eb473834.js",
     "index.html": "/TagPicker/index.html",
     "main.d7c35a99.css.map": "/TagPicker/static/css/main.d7c35a99.css.map",
-    "main.ffac1233.js.map": "/TagPicker/static/js/main.ffac1233.js.map"
+    "main.eb473834.js.map": "/TagPicker/static/js/main.eb473834.js.map"
   },
   "entrypoints": [
     "static/css/main.d7c35a99.css",
-    "static/js/main.ffac1233.js"
+    "static/js/main.eb473834.js"
   ]
 }
