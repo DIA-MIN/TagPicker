@@ -225,7 +225,7 @@ const MyTags = ({tags, koTags, enTags, setLocalTags, setIsUpdate, option}) => {
           </MyTagsWrapper>
         </Container>
       ) : (
-        <p>등록된 해시 태그가 없습니다.</p>
+        <Title size={24}>등록된 해시 태그가 없습니다.</Title>
       )}
       {isClicked && (
         <ConfirmModal

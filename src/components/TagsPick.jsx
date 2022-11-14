@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import ConfirmModal from './ConfirmModal';
 import Title from './Title';
 
 const Container = styled.div`
@@ -74,10 +75,16 @@ const TagsPick = ({koTags, enTags, option}) => {
     if (data !== null) return JSON.parse(data);
     else return [];
   });
+  const [isEmty, setIsEmty] = useState(false);
 
   const pickTagsHandler = () => {
     const koPicks = [];
     const enPicks = [];
+
+    if (koPicks.length === 0 || enTags.length === 0) {
+      setIsEmty((pre) => !pre);
+      return;
+    }
 
     while (koPicks.length < option.ko) {
       let koPick = koTags[Math.floor(Math.random() * koTags.length)];
@@ -97,21 +104,28 @@ const TagsPick = ({koTags, enTags, option}) => {
   };
 
   return (
-    <Container>
-      <TagPickBtn onClick={pickTagsHandler}>TAGPICK</TagPickBtn>
-      {history.length ? (
-        <TagsContainer>
-          <Title size={20}>최근 사용한 해시태그는 다음과 같습니다.</Title>
-          <TagList>
-            {history && history.map((tag) => <Tag key={tag}>{tag}</Tag>)}
-          </TagList>
-        </TagsContainer>
-      ) : (
-        <TagsContainer>
-          <Title size={24}>최근 사용한 해시태그가 없습니다.</Title>
-        </TagsContainer>
+    <>
+      <Container>
+        <TagPickBtn onClick={pickTagsHandler}>TAGPICK</TagPickBtn>
+        {history.length ? (
+          <TagsContainer>
+            <Title size={20}>최근 사용한 해시태그는 다음과 같습니다.</Title>
+            <TagList>
+              {history && history.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+            </TagList>
+          </TagsContainer>
+        ) : (
+          <TagsContainer>
+            <Title size={24}>최근 사용한 해시태그가 없습니다.</Title>
+          </TagsContainer>
+        )}
+      </Container>
+      {isEmty && (
+        <ConfirmModal setIsClicked={setIsEmty} type={'check'} option={option}>
+          먼저 해시태그를 등록해주세요.
+        </ConfirmModal>
       )}
-    </Container>
+    </>
   );
 };
 
