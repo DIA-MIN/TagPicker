@@ -125,10 +125,6 @@ const ConfirmModal = ({
   const [koValue, setKovalue] = useState(option.ko);
   const [enValue, setEnvalue] = useState(option.en);
 
-  useEffect(() => {
-    console.log(option);
-  }, []);
-
   const clickCloseHandler = () => {
     setIsClicked(false);
   };
@@ -149,8 +145,8 @@ const ConfirmModal = ({
   const optionSubmit = (e) => {
     e.preventDefault();
     const values = {
-      ko: koValue,
-      en: enValue,
+      ko: +koValue,
+      en: +enValue,
     };
     setOption(values);
     localStorage.setItem('myTagsOption', JSON.stringify(values));

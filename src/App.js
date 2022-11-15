@@ -22,7 +22,7 @@ function App() {
   const [option, setOption] = useState(() => {
     const data = localStorage.getItem('myTagsOption');
     if (data !== null) return JSON.parse(data);
-    else return {ko: 5, en: 15};
+    else return {ko: 0, en: 0};
   });
 
   useEffect(() => {

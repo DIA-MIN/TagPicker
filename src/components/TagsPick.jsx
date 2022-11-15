@@ -76,12 +76,26 @@ const TagsPick = ({koTags, enTags, option}) => {
     else return [];
   });
   const [isEmty, setIsEmty] = useState(false);
+  const [message, setIsMessage] = useState('');
 
   const pickTagsHandler = () => {
     const koPicks = [];
     const enPicks = [];
 
-    if (koTags.length === 0 || enTags.length === 0) {
+    if (koTags.length + enTags.length < 1) {
+      setIsMessage('먼저 해시태그를 등록해주세요.');
+      setIsEmty((pre) => !pre);
+      return;
+    }
+
+    if (option.ko === 0 && option.en === 0) {
+      setIsMessage(`⁝ 버튼을 눌러 OPTION 값을 설정해주세요.`);
+      setIsEmty((pre) => !pre);
+      return;
+    }
+
+    if (option.ko > koTags.length || option.en > enTags.length) {
+      setIsMessage('OPTION의 값은 각 해시태그 개수보다 적어야합니다.');
       setIsEmty((pre) => !pre);
       return;
     }
@@ -122,7 +136,7 @@ const TagsPick = ({koTags, enTags, option}) => {
       </Container>
       {isEmty && (
         <ConfirmModal setIsClicked={setIsEmty} type={'check'} option={option}>
-          먼저 해시태그를 등록해주세요.
+          {message}
         </ConfirmModal>
       )}
     </>
